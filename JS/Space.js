@@ -10,6 +10,9 @@ class Space {
     this.player = null;
     this.intervalId = null;
     this.controls = null;
+    this.enemies = [];
+    this.frames = 0;
+    this.friends = [];
   }
 
   drawBackground() {
@@ -32,9 +35,25 @@ class Space {
     }, 1000 / 60);
   }
 
+  stop() {
+    clearInterval(this.intervalId);
+  }
+
   update() {
     this.ctx.clearRect(0, 0, this.width, this.height);
+    this.frames++;
     this.drawBackground();
     this.player.drawPlayer();
+    this.createEnemies();
+    this.enemies.forEach((enemy) => {
+      enemy.y++;
+      enemy.drawEnemy();
+    });
+  }
+
+  createEnemies() {
+    if (this.frames % 200 === 0) {
+      this.enemies.push(new Enemy(this));
+    }
   }
 }

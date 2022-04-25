@@ -6,6 +6,7 @@ class Player {
     this.width = 60;
     this.height = 100;
     this.imgBB = new Image();
+    this.life = 3;
   }
 
   drawPlayer() {
@@ -19,15 +20,21 @@ class Player {
     );
   }
 
-
   moveLeft() {
-    this.x -= 10;
-
-   
+    this.x -= 10;  
   }
-
 
   moveRight() {
     this.x += 10;
+  }
+
+
+  crash(enemy){
+    return ( 
+    this.bottom() > enemy.top() &&
+    this.top() < enemy.bottom() &&
+    this.right() > enemy.left() &&
+    this.left() < enemy.right()
+    );
   }
 }
