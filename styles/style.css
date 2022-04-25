@@ -1,7 +1,35 @@
-
+@import url("https://allfont.net/allfont.css?fonts=star-jedi");
 
 #game-board {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 5px solid yellow;
+}
+
+body {
+    background-color: black;
+
+}
+
+.all{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.description {
+    display:flex;
+    color: yellow;
+    font-family:  "Star Jedi", arial;
+    height: 400px;
+    align-items: center;
+    justify-content: center;
+      flex-direction: column;
+
+}
+
+#start-button {
+    display: flex;
+  
 }

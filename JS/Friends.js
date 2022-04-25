@@ -3,23 +3,23 @@ class Friends {
     this.space = space;
     this.x = Math.floor(Math.random() * 480);
     this.y = 0;
-    this.width = 70;
+    this.width = 60;
     this.height = 50;
     this.imgFr = new Image();
   }
 
-  friendBorderLeft() {
+  borderLeft() {
     return this.x;
   }
-  friendBorderRight() {
+  borderRight() {
     return this.x + this.width;
   }
 
-  friendBorderTop() {
+ borderTop() {
     return this.y;
   }
 
-  friendBorderBottom() {
+  borderBottom() {
     return this.y + this.height;
   }
 

@@ -13,6 +13,10 @@ class Space {
     this.enemies = [];
     this.frames = 0;
     this.friends = [];
+
+    this.lifes = null;
+
+    this.score = 0;
   }
 
   drawBackground() {
@@ -43,6 +47,11 @@ class Space {
     this.ctx.clearRect(0, 0, this.width, this.height);
     this.frames++;
     this.drawBackground();
+
+    this.displayScore();
+    this.displayLifes();
+    //this.drawLifes();
+
     this.player.drawPlayer();
     this.createEnemies();
     this.enemies.forEach((enemy) => {
@@ -51,9 +60,11 @@ class Space {
     });
     this.createFriends();
     this.friends.forEach((friend) => {
-        friend.y+=2;
-        friend.drawFriend();
-      });
+      friend.y += 2;
+      friend.drawFriend();
+    });
+    this.colisionEnemy();
+    this.colisionFriends();
   }
 
   createEnemies() {
@@ -63,10 +74,66 @@ class Space {
   }
 
   createFriends() {
-      if(this.frames % 300 === 0) {
-          this.friends.push(new Friends(this));
-      }
+    if (this.frames % 300 === 0) {
+      this.friends.push(new Friends(this));
+    }
   }
 
-  
+  colisionEnemy() {
+    const player = this.player;
+    const colision = this.enemies.some(function (enemy) {
+      return player.crashed(enemy);
+    });
+
+    if (colision) {
+      switch (this.player.lifes) {
+        case 3:
+        case 2:
+        case 1:
+          this.player.lifes--;
+          break;
+        case 0:
+          this.stop();
+          break;
+      }
+    }
+  }
+  displayLifes() {
+    this.ctx.font = "20px serif";
+    this.ctx.fillStyle = "white";
+    this.ctx.fillText(`Lifes left: ${this.player.lifes}`, 50, 70);
+  }
+
+  // if (this.player.collided === false) {
+  //   this.player.collided = true;
+  // }
+
+  drawLifes() {
+    this.ctx.fillStyle = "green";
+    this.ctx.fillRect(10, 15, 300, 20);
+  }
+
+  colisionFriends() {
+    const player = this.player;
+    const colision = this.friends.some(function (friend) {
+      return player.catch(friend);
+    });
+
+    if (colision) {
+      this.score++; // CHECK SCORE
+    }
+  }
+
+  displayScore() {
+    this.ctx.font = "20px serif";
+    this.ctx.fillStyle = "yellow";
+    this.ctx.fillText(`${this.score} Saved Grogu`, 50, 30);
+  }
+
+  gameOver() {
+    ctx.font = "20px Pathway Gothic One";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "red";
+    ctx.fillText("GAME OVER", this.canvas.width / 2, this.canvas.height / 2);
+  }
 }

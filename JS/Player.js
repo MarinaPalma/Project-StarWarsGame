@@ -6,7 +6,10 @@ class Player {
     this.width = 60;
     this.height = 100;
     this.imgBB = new Image();
-    this.life = 3;
+    this.lifes = 3;
+    
+    this.collided =false;
+    
   }
 
   drawPlayer() {
@@ -21,20 +24,45 @@ class Player {
   }
 
   moveLeft() {
-    this.x -= 10;  
+    this.x -= 10;
   }
 
   moveRight() {
     this.x += 10;
   }
 
+  borderLeft() {
+    return this.x;
+  }
+  borderRight() {
+    return this.x + this.width;
+  }
 
-  colision(enemy){
-    return ( 
-    this.bottom() > enemy.top() &&
-    this.top() < enemy.bottom() &&
-    this.right() > enemy.left() &&
-    this.left() < enemy.right()
+  borderTop() {
+    return this.y;
+  }
+
+  borderBottom() {
+    return this.y + this.height;
+  }
+
+  crashed(enemy) {
+    return (
+      this.borderBottom() > enemy.borderTop() &&
+      this.borderTop() < enemy.borderBottom() &&
+      this.borderRight() > enemy.borderLeft() &&
+      this.borderLeft() < enemy.borderRight()
     );
   }
+
+  catch(friend){
+    return(
+      this.borderBottom() > friend.borderTop() &&
+      this.borderTop() < friend.borderBottom() &&
+      this.borderRight() > friend.borderLeft() &&
+      this.borderLeft() < friend.borderRight()
+    );
+  }
+
+
 }

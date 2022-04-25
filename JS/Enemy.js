@@ -8,23 +8,29 @@ class Enemy {
     this.imgEn = new Image();
   }
 
-  enemyBorderLeft() {
+  borderLeft() {
     return this.x;
   }
-  enemyBorderRight() {
+  borderRight() {
     return this.x + this.width;
   }
 
-  enemyBorderTop() {
+  borderTop() {
     return this.y;
   }
 
-  enemyBorderBottom() {
+  borderBottom() {
     return this.y + this.height;
   }
 
-drawEnemy(){
+  drawEnemy() {
     this.imgEn.src = "/docs/assets/imgs/fighter.png";
-    this.space.ctx.drawImage(this.imgEn, this.x, this.y, this.width, this.height);
-}
+    this.space.ctx.drawImage(
+      this.imgEn,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
+  }
 }
