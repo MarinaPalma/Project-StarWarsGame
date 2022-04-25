@@ -29,7 +29,7 @@ class Player {
   }
 
 
-  crash(enemy){
+  colision(enemy){
     return ( 
     this.bottom() > enemy.top() &&
     this.top() < enemy.bottom() &&

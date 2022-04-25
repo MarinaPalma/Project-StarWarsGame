@@ -49,6 +49,11 @@ class Space {
       enemy.y++;
       enemy.drawEnemy();
     });
+    this.createFriends();
+    this.friends.forEach((friend) => {
+        friend.y+=2;
+        friend.drawFriend();
+      });
   }
 
   createEnemies() {
@@ -56,4 +61,12 @@ class Space {
       this.enemies.push(new Enemy(this));
     }
   }
+
+  createFriends() {
+      if(this.frames % 300 === 0) {
+          this.friends.push(new Friends(this));
+      }
+  }
+
+  
 }
