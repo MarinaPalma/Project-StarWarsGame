@@ -13,8 +13,6 @@ class Space {
     this.enemies = [];
     this.frames = 0;
     this.friends = [];
-    
-
   }
 
   drawBackground() {
@@ -45,30 +43,30 @@ class Space {
     this.ctx.clearRect(0, 0, this.width, this.height);
     this.frames++;
     this.drawBackground();
-
-   
-
-    //this.drawLifes();
-
     this.player.drawPlayer();
     this.createEnemies();
     this.enemies.forEach((enemy) => {
       enemy.y++;
+      if(!enemy.collided){
       enemy.drawEnemy();
+    }
     });
     this.createFriends();
     this.friends.forEach((friend) => {
       friend.y += 2;
+      if(!friend.collided){
       friend.drawFriend();
+    }
     });
     this.colisionEnemy();
+    this.drawLifes();
     this.colisionFriends();
-    this.displayLifes();
+    //this.displayLifes();
     this.displayScore();
   }
 
   createEnemies() {
-    if (this.frames % 200 === 0) {
+    if (this.frames % 180 === 0) {
       this.enemies.push(new Enemy(this));
     }
   }
@@ -93,21 +91,42 @@ class Space {
       this.stop();
     }
   }
-  displayLifes() {
-    this.ctx.font = "20px serif";
-    this.ctx.fillStyle = "white";
-    this.ctx.fillText(`Lifes left: ${this.player.lifes}`, 50, 70);
-  }
+  // displayLifes() {
+  //   this.ctx.font = "20px serif";
+  //   this.ctx.fillStyle = "white";
+  //   this.ctx.fillText(`Lifes left: ${this.player.lifes}`, 50, 70);
+  // }
 
   drawLifes() {
+    if(this.player.lifes === 3){
     this.ctx.fillStyle = "green";
-    this.ctx.fillRect(10, 15, 300, 20);
+     this.ctx.fillRect(10, 15, 300, 20);
+    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = "yellow";
+    this.ctx.strokeRect(10, 15, 300, 20)
+   
+  } else if(this.player.lifes === 2){
+    this.ctx.fillStyle = "orange";
+    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = "yellow";
+    this.ctx.strokeRect(10, 15, 300, 20)
+    this.ctx.fillRect(10, 15, 200, 20);
+  } else if(this.player.lifes === 1){
+    this.ctx.fillStyle = "red";
+    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = "yellow";
+    this.ctx.strokeRect(10, 15, 300, 20)
+    this.ctx.fillRect(10, 15, 100, 20);
+  } else{
+    this.ctx.lineWidth = 1;
+    this.ctx.strokeStyle = "yellow";
+    this.ctx.strokeRect(10, 15, 300, 20)
+  }
   }
 
   colisionFriends() {
     const player = this.player;
     const colision = this.friends.some(function (friend) {
-      console.log("friends:"+ friend.collided + "collided:"+ player.crashed(friend))
       if(!friend.collided && player.crashed(friend)){
         friend.collided = true;
         player.score++;

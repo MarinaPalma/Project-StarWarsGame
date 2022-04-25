@@ -14,6 +14,7 @@ class Player {
   }
 
   drawPlayer() {
+
     this.imgBB.src = "/docs/assets/imgs/bb8 front.png";
     this.space.ctx.drawImage(
       this.imgBB,
@@ -49,10 +50,10 @@ class Player {
 
   crashed(object) {
     return (
-      
-      (this.borderTop()+10) < (object.borderBottom()-5) &&
-      (this.borderRight()-10) > (object.borderLeft()+5) &&
-      (this.borderLeft()+10) < (object.borderRight()-5)
+      this.borderBottom() > object.borderTop() &&
+      this.borderTop() < object.borderBottom() &&
+      this.borderRight() > object.borderLeft() &&
+      this.borderLeft() < object.borderRight()
     );
   }
 

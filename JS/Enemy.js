@@ -33,7 +33,5 @@ class Enemy {
       this.width,
       this.height
     );
-    
   }
-
 }
