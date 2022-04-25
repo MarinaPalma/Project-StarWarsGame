@@ -7,6 +7,7 @@ class Player {
     this.height = 100;
     this.imgBB = new Image();
     this.lifes = 3;
+    this.score = 0;
     
     this.collided =false;
     
@@ -46,23 +47,16 @@ class Player {
     return this.y + this.height;
   }
 
-  crashed(enemy) {
+  crashed(object) {
     return (
-      this.borderBottom() > enemy.borderTop() &&
-      this.borderTop() < enemy.borderBottom() &&
-      this.borderRight() > enemy.borderLeft() &&
-      this.borderLeft() < enemy.borderRight()
+      
+      (this.borderTop()+10) < (object.borderBottom()-5) &&
+      (this.borderRight()-10) > (object.borderLeft()+5) &&
+      (this.borderLeft()+10) < (object.borderRight()-5)
     );
   }
 
-  catch(friend){
-    return(
-      this.borderBottom() > friend.borderTop() &&
-      this.borderTop() < friend.borderBottom() &&
-      this.borderRight() > friend.borderLeft() &&
-      this.borderLeft() < friend.borderRight()
-    );
-  }
+  
 
 
 }

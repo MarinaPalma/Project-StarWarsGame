@@ -5,7 +5,7 @@ class Space {
     this.backGround = new Image();
     this.x = 0;
     this.y = 0;
-    this.width = 600;
+    this.width = 700;
     this.height = 600;
     this.player = null;
     this.intervalId = null;
@@ -13,10 +13,8 @@ class Space {
     this.enemies = [];
     this.frames = 0;
     this.friends = [];
+    
 
-    this.lifes = null;
-
-    this.score = 0;
   }
 
   drawBackground() {
@@ -48,8 +46,8 @@ class Space {
     this.frames++;
     this.drawBackground();
 
-    this.displayScore();
-    this.displayLifes();
+   
+
     //this.drawLifes();
 
     this.player.drawPlayer();
@@ -65,6 +63,8 @@ class Space {
     });
     this.colisionEnemy();
     this.colisionFriends();
+    this.displayLifes();
+    this.displayScore();
   }
 
   createEnemies() {
@@ -74,7 +74,7 @@ class Space {
   }
 
   createFriends() {
-    if (this.frames % 300 === 0) {
+    if (this.frames % 350 === 0) {
       this.friends.push(new Friends(this));
     }
   }
@@ -82,20 +82,15 @@ class Space {
   colisionEnemy() {
     const player = this.player;
     const colision = this.enemies.some(function (enemy) {
-      return player.crashed(enemy);
+      if (!enemy.collided && player.crashed(enemy)) {
+        enemy.collided = true;
+        player.lifes--;
+        return player.crashed(enemy);
+      }
     });
 
-    if (colision) {
-      switch (this.player.lifes) {
-        case 3:
-        case 2:
-        case 1:
-          this.player.lifes--;
-          break;
-        case 0:
-          this.stop();
-          break;
-      }
+    if (player.lifes === 0) {
+      this.stop();
     }
   }
   displayLifes() {
@@ -103,10 +98,6 @@ class Space {
     this.ctx.fillStyle = "white";
     this.ctx.fillText(`Lifes left: ${this.player.lifes}`, 50, 70);
   }
-
-  // if (this.player.collided === false) {
-  //   this.player.collided = true;
-  // }
 
   drawLifes() {
     this.ctx.fillStyle = "green";
@@ -116,24 +107,30 @@ class Space {
   colisionFriends() {
     const player = this.player;
     const colision = this.friends.some(function (friend) {
-      return player.catch(friend);
+      console.log("friends:"+ friend.collided + "collided:"+ player.crashed(friend))
+      if(!friend.collided && player.crashed(friend)){
+        friend.collided = true;
+        player.score++;
+        return player.crashed(friend);
+      }
+      
     });
-
-    if (colision) {
-      this.score++; // CHECK SCORE
-    }
   }
 
   displayScore() {
     this.ctx.font = "20px serif";
     this.ctx.fillStyle = "yellow";
-    this.ctx.fillText(`${this.score} Saved Grogu`, 50, 30);
+    this.ctx.fillText(`${this.player.score} Saved Grogu`, 50, 30);
   }
 
   gameOver() {
-    ctx.font = "20px Pathway Gothic One";
-    ctx.textAlign = "center";
-    ctx.fillStyle = "red";
-    ctx.fillText("GAME OVER", this.canvas.width / 2, this.canvas.height / 2);
+    this.ctx.font = "30px Pathway Gothic One";
+    this.ctx.textAlign = "center";
+    this.ctx.fillStyle = "red";
+    this.ctx.fillText(
+      "GAME OVER",
+      this.canvas.width / 2,
+      this.canvas.height / 2
+    );
   }
 }

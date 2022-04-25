@@ -1,11 +1,12 @@
 class Enemy {
   constructor(space) {
     this.space = space;
-    this.x = Math.floor(Math.random() * 500);
+    this.x = Math.floor(Math.random() * 600);
     this.y = 0;
     this.width = 100;
     this.height = 60;
     this.imgEn = new Image();
+    this.collided = false;
   }
 
   borderLeft() {
@@ -32,5 +33,7 @@ class Enemy {
       this.width,
       this.height
     );
+    
   }
+
 }
