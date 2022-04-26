@@ -10,8 +10,7 @@ class Space {
     this.player = null;
     this.intervalId = null;
     this.controls = null;
-    this.enemiesY = [];
-    this.enemiesB = [];
+    this.enemies = [];
     this.frames = 0;
     this.friends = [];
     this.isActive = false;
@@ -44,11 +43,11 @@ class Space {
     this.active = false;
     this.ctx.fillStyle = "yellow";
     this.ctx.fillRect(0, 0, this.width, this.height);
-    this.ctx.font = "30px Star Jedi";
+    this.ctx.font = "20px Star Jedi";
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "red";
     this.ctx.fillText(
-      "game over",
+      `you failed your mission.\nonly ${this.player.score} Grogu were saved`,  
       this.canvas.width / 2,
       this.canvas.height / 2
     );
@@ -60,19 +59,16 @@ class Space {
     this.frames++;
     this.drawBackground();
     this.player.drawPlayer();
-    this.createEnemiesB();
-    this.enemiesB.forEach((enemy) => {
-      enemy.y++;
-      if (!enemy.collided) {
-        enemy.drawEnemyB();
+    this.createEnemies();
+    this.enemies.forEach((enemy) => {
+      if(enemy.ship === "fighter"){
+        enemy.y++;
+      }else{
+        enemy.y+=2;
       }
-    });
-
-    this.createEnemiesY();
-    this.enemiesY.forEach((enemy) => {
-      enemy.y += 2;
+     
       if (!enemy.collided) {
-        enemy.drawEnemyY();
+        enemy.drawEnemy();
       }
     });
 
@@ -85,20 +81,21 @@ class Space {
     });
     this.drawLifes();
     this.colisionEnemy();
+    this.colisionFriends();
     this.displayScore();
   }
 
-  createEnemiesB() {
+  createEnemies() {
     if (this.frames % 180 === 0) {
-      this.enemiesB.push(new Enemy(this, 100, 60));
+      this.enemies.push(new Enemy(this, "fighter", 100, 60));
+    }
+
+    if (this.frames % 300 === 0) {
+      this.enemies.push(new Enemy(this, "yellow fighter", 50, 30));
     }
   }
 
-  createEnemiesY() {
-    if (this.frames % 300 === 0) {
-      this.enemiesY.push(new Enemy(this, 50, 30));
-    }
-  }
+
 
   createFriends() {
     if (this.frames % 350 === 0) {
@@ -108,7 +105,7 @@ class Space {
 
   colisionEnemy() {
     const player = this.player;
-    this.enemiesY.some(function (enemy) {
+    this.enemies.some(function (enemy) {
       if (!enemy.collided && player.crashed(enemy)) {
         enemy.collided = true;
         player.lifes--;
@@ -116,38 +113,13 @@ class Space {
       }
     });
 
-    this.enemiesB.some((enemy) => {
-      if (!enemy.collided && player.crashed(enemy)) {
-        enemy.collided = true;
-        player.lifes--;
-        return player.crashed(enemy);
-      }
-    });
-
-    if (player.lifes === 0) {
+     if (player.lifes === 0) {
       this.stop();
     }
   }
 
   drawLifes() {
-    const player = this.player;
-    this.friends.some(function (friend) {
-      if (!friend.collided && player.crashed(friend)) {
-        friend.collided = true;
-
-       
-        player.score++;
-        if(player.score === 4){
-          player.lifes++;
-
-        }
-        return player.crashed(friend);
-      }
-    });
-    if (player.score === 15) {
-      this.win();
-    }
-    switch (player.lifes) {
+    switch (this.player.lifes) {
       case 3:
         this.ctx.fillStyle = "green";
         this.ctx.fillRect(10, 15, 300, 20);
@@ -185,19 +157,19 @@ class Space {
     }
   }
 
-  /* colisionFriends() {
+   colisionFriends() {
     const player = this.player;
-    const colision = this.friends.some(function (friend) {
+    this.friends.some(function (friend) {
       if (!friend.collided && player.crashed(friend)) {
         friend.collided = true;
         player.score++;
+        if(player.score === 4){
+          player.lifes++;
+        }
         return player.crashed(friend);
       }
     });
-    if (player.score === 20) {
-      this.win();
-    }
-  } */
+  } 
 
   displayScore() {
     this.ctx.font = "20px Star Jedi";
