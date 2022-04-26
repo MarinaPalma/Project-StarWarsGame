@@ -1,11 +1,14 @@
 class Enemy {
-  constructor(space) {
+  constructor(space, img, width,height) {
     this.space = space;
     this.x = Math.floor(Math.random() * 600);
     this.y = 0;
-    this.width = 100;
-    this.height = 60;
-    this.imgEn = new Image();
+    this.width = width;
+    this.height = height;
+      this.img = img;
+      this.imgB = new Image();
+      this.imgY = new Image();
+  
     this.collided = false;
   }
 
@@ -24,14 +27,26 @@ class Enemy {
     return this.y + this.height;
   }
 
-  drawEnemy() {
-    this.imgEn.src = "/docs/assets/imgs/fighter.png";
+  drawEnemyB() {
+    this.imgB.src = "/docs/assets/imgs/fighter.png";
     this.space.ctx.drawImage(
-      this.imgEn,
+      this.imgB,
       this.x,
       this.y,
       this.width,
       this.height
     );
   }
+
+  drawEnemyY() {
+    this.imgY.src = "/docs/assets/imgs/new fighter yellow.png";
+    this.space.ctx.drawImage(
+      this.imgY,
+      this.x,
+      this.y,
+      this.width,
+      this.height);
+  }
 }
+//this.width = 100;
+//this.height = 60;

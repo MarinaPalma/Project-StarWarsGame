@@ -10,7 +10,8 @@ class Space {
     this.player = null;
     this.intervalId = null;
     this.controls = null;
-    this.enemies = [];
+    this.enemiesY = [];
+    this.enemiesB = [];
     this.frames = 0;
     this.friends = [];
     this.isActive = false;
@@ -41,13 +42,13 @@ class Space {
 
   stop() {
     this.active = false;
-    this.ctx.fillRect(0, 0, this.width, this.height);
     this.ctx.fillStyle = "yellow";
-    this.ctx.font = "30px serif";
+    this.ctx.fillRect(0, 0, this.width, this.height);
+    this.ctx.font = "30px Star Jedi";
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "red";
     this.ctx.fillText(
-      "GAME OVER",
+      "game over",
       this.canvas.width / 2,
       this.canvas.height / 2
     );
@@ -59,13 +60,22 @@ class Space {
     this.frames++;
     this.drawBackground();
     this.player.drawPlayer();
-    this.createEnemies();
-    this.enemies.forEach((enemy) => {
+    this.createEnemiesB();
+    this.enemiesB.forEach((enemy) => {
       enemy.y++;
       if (!enemy.collided) {
-        enemy.drawEnemy();
+        enemy.drawEnemyB();
       }
     });
+
+    this.createEnemiesY();
+    this.enemiesY.forEach((enemy) => {
+      enemy.y += 2;
+      if (!enemy.collided) {
+        enemy.drawEnemyY();
+      }
+    });
+
     this.createFriends();
     this.friends.forEach((friend) => {
       friend.y += 2;
@@ -73,16 +83,20 @@ class Space {
         friend.drawFriend();
       }
     });
-    this.colisionEnemy();
     this.drawLifes();
+    this.colisionEnemy();
     this.displayScore();
-    this.colisionFriends();
-    
   }
 
-  createEnemies() {
+  createEnemiesB() {
     if (this.frames % 180 === 0) {
-      this.enemies.push(new Enemy(this));
+      this.enemiesB.push(new Enemy(this, this.imgB, 100, 60));
+    }
+  }
+
+  createEnemiesY() {
+    if (this.frames % 300 === 0) {
+      this.enemiesY.push(new Enemy(this, this.imgY, 50, 30));
     }
   }
 
@@ -94,7 +108,15 @@ class Space {
 
   colisionEnemy() {
     const player = this.player;
-    const colision = this.enemies.some(function (enemy) {
+    this.enemiesY.some(function (enemy) {
+      if (!enemy.collided && player.crashed(enemy)) {
+        enemy.collided = true;
+        player.lifes--;
+        return player.crashed(enemy);
+      }
+    });
+
+    this.enemiesB.some((enemy) => {
       if (!enemy.collided && player.crashed(enemy)) {
         enemy.collided = true;
         player.lifes--;
@@ -107,8 +129,21 @@ class Space {
     }
   }
 
-
   drawLifes() {
+    const player = this.player;
+    this.friends.some(function (friend) {
+      if (!friend.collided && player.crashed(friend)) {
+        friend.collided = true;
+
+        //player.lifes++;
+
+        player.score++;
+        return player.crashed(friend);
+      }
+    });
+    if (this.player.score === 15) {
+      this.win();
+    }
     switch (this.player.lifes) {
       case 3:
         this.ctx.fillStyle = "green";
@@ -132,15 +167,22 @@ class Space {
         this.ctx.strokeStyle = "yellow";
         this.ctx.strokeRect(10, 15, 300, 20);
         this.ctx.fillRect(10, 15, 100, 20);
-
+        break;
       case 0:
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = "yellow";
+        this.ctx.strokeRect(10, 15, 300, 20);
+        break;
+      default:
+        this.ctx.fillStyle = "green";
+        this.ctx.fillRect(10, 15, 300, 20);
         this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = "yellow";
         this.ctx.strokeRect(10, 15, 300, 20);
     }
   }
 
-  colisionFriends() {
+  /* colisionFriends() {
     const player = this.player;
     const colision = this.friends.some(function (friend) {
       if (!friend.collided && player.crashed(friend)) {
@@ -148,15 +190,11 @@ class Space {
         player.score++;
         return player.crashed(friend);
       }
-
-      // if(player.score > 2){
-      //   player.lifes++;
-      // }
     });
     if (player.score === 20) {
       this.win();
     }
-  }
+  } */
 
   displayScore() {
     this.ctx.font = "20px Star Jedi";
@@ -167,9 +205,9 @@ class Space {
   win() {
     clearInterval(this.intervalId);
     this.drawBackground();
-    this.ctx.font = "40px serif";
+    this.ctx.font = "40px Star Jedi";
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "red";
-    this.ctx.fillText("YOU WON!!", 300, 350);
+    this.ctx.fillText("you won!!", 300, 350);
   }
 }

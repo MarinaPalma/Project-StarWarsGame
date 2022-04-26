@@ -18,3 +18,18 @@ window.onload = () => {
     startGame();
   };
 };
+
+/* window.onload = () => {
+  document.getElementById("start-button").onclick = () => {
+    startGame();
+  };
+
+  let game = null;
+
+  function startGame() {
+    if (!game) {
+      game = new Space();
+      game.start();
+    }
+  }
+}; */
