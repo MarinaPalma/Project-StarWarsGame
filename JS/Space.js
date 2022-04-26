@@ -36,6 +36,16 @@ class Space {
   }
 
   stop() {
+    this.ctx.fillRect(0, 0, this.width, this.height);
+    this.ctx.fillStyle = "yellow";
+    this.ctx.font = "30px Pathway Gothic One";
+    this.ctx.textAlign = "center";
+    this.ctx.fillStyle = "red";
+    this.ctx.fillText(
+      "GAME OVER",
+      this.canvas.width / 2,
+      this.canvas.height / 2
+    );
     clearInterval(this.intervalId);
   }
 
@@ -47,16 +57,16 @@ class Space {
     this.createEnemies();
     this.enemies.forEach((enemy) => {
       enemy.y++;
-      if(!enemy.collided){
-      enemy.drawEnemy();
-    }
+      if (!enemy.collided) {
+        enemy.drawEnemy();
+      }
     });
     this.createFriends();
     this.friends.forEach((friend) => {
       friend.y += 2;
-      if(!friend.collided){
-      friend.drawFriend();
-    }
+      if (!friend.collided) {
+        friend.drawFriend();
+      }
     });
     this.colisionEnemy();
     this.drawLifes();
@@ -98,58 +108,62 @@ class Space {
   // }
 
   drawLifes() {
-    if(this.player.lifes === 3){
-    this.ctx.fillStyle = "green";
-     this.ctx.fillRect(10, 15, 300, 20);
-    this.ctx.lineWidth = 1;
-    this.ctx.strokeStyle = "yellow";
-    this.ctx.strokeRect(10, 15, 300, 20)
-   
-  } else if(this.player.lifes === 2){
-    this.ctx.fillStyle = "orange";
-    this.ctx.lineWidth = 1;
-    this.ctx.strokeStyle = "yellow";
-    this.ctx.strokeRect(10, 15, 300, 20)
-    this.ctx.fillRect(10, 15, 200, 20);
-  } else if(this.player.lifes === 1){
-    this.ctx.fillStyle = "red";
-    this.ctx.lineWidth = 1;
-    this.ctx.strokeStyle = "yellow";
-    this.ctx.strokeRect(10, 15, 300, 20)
-    this.ctx.fillRect(10, 15, 100, 20);
-  } else{
-    this.ctx.lineWidth = 1;
-    this.ctx.strokeStyle = "yellow";
-    this.ctx.strokeRect(10, 15, 300, 20)
-  }
+    switch (this.player.lifes) {
+      case 3:
+        this.ctx.fillStyle = "green";
+        this.ctx.fillRect(10, 15, 300, 20);
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = "yellow";
+        this.ctx.strokeRect(10, 15, 300, 20);
+        break;
+
+      case 2:
+        this.ctx.fillStyle = "orange";
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = "yellow";
+        this.ctx.strokeRect(10, 15, 300, 20);
+        this.ctx.fillRect(10, 15, 200, 20);
+        break;
+
+      case 1:
+        this.ctx.fillStyle = "red";
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = "yellow";
+        this.ctx.strokeRect(10, 15, 300, 20);
+        this.ctx.fillRect(10, 15, 100, 20);
+
+      case 0:
+        this.ctx.lineWidth = 1;
+        this.ctx.strokeStyle = "yellow";
+        this.ctx.strokeRect(10, 15, 300, 20);
+    }
   }
 
   colisionFriends() {
     const player = this.player;
     const colision = this.friends.some(function (friend) {
-      if(!friend.collided && player.crashed(friend)){
+      if (!friend.collided && player.crashed(friend)) {
         friend.collided = true;
         player.score++;
         return player.crashed(friend);
       }
-      
     });
   }
 
   displayScore() {
     this.ctx.font = "20px serif";
     this.ctx.fillStyle = "yellow";
-    this.ctx.fillText(`${this.player.score} Saved Grogu`, 50, 30);
+    this.ctx.fillText(`${this.player.score} Saved Grogu`, 100, 60);
   }
 
-  gameOver() {
-    this.ctx.font = "30px Pathway Gothic One";
-    this.ctx.textAlign = "center";
-    this.ctx.fillStyle = "red";
-    this.ctx.fillText(
-      "GAME OVER",
-      this.canvas.width / 2,
-      this.canvas.height / 2
-    );
-  }
+  // gameOver() {
+  //   this.ctx.font = "30px Pathway Gothic One";
+  //   this.ctx.textAlign = "center";
+  //   this.ctx.fillStyle = "red";
+  //   this.ctx.fillText(
+  //     "GAME OVER",
+  //     this.canvas.width / 2,
+  //     this.canvas.height / 2
+  //   );
+  // }
 }
