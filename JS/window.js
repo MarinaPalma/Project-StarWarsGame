@@ -19,17 +19,17 @@ window.onload = () => {
   };
 };
 
-/* window.onload = () => {
-  document.getElementById("start-button").onclick = () => {
-    startGame();
-  };
+//  window.onload = () => {
+//   document.getElementById("start-button").onclick = () => {
+//     startGame();
+//   };
 
-  let game = null;
+//   let game = null;
 
-  function startGame() {
-    if (!game) {
-      game = new Space();
-      game.start();
-    }
-  }
-}; */
+//   function startGame() {
+//     if (!game) {
+//       game = new Space();
+//       game.start();
+//     }
+//   }
+// }; 

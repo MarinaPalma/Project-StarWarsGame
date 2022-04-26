@@ -47,7 +47,7 @@ class Space {
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "red";
     this.ctx.fillText(
-      `you failed your mission.\nonly ${this.player.score} Grogu were saved`,  
+      `you failed your mission.\nonly ${this.player.score} Grogu saved`,
       this.canvas.width / 2,
       this.canvas.height / 2
     );
@@ -61,12 +61,12 @@ class Space {
     this.player.drawPlayer();
     this.createEnemies();
     this.enemies.forEach((enemy) => {
-      if(enemy.ship === "fighter"){
+      if (enemy.ship === "fighter") {
         enemy.y++;
-      }else{
-        enemy.y+=2;
+      } else {
+        enemy.y += 2;
       }
-     
+
       if (!enemy.collided) {
         enemy.drawEnemy();
       }
@@ -81,8 +81,8 @@ class Space {
     });
     this.drawLifes();
     this.colisionEnemy();
-    this.colisionFriends();
     this.displayScore();
+    this.colisionFriends();
   }
 
   createEnemies() {
@@ -94,8 +94,6 @@ class Space {
       this.enemies.push(new Enemy(this, "yellow fighter", 50, 30));
     }
   }
-
-
 
   createFriends() {
     if (this.frames % 350 === 0) {
@@ -113,7 +111,7 @@ class Space {
       }
     });
 
-     if (player.lifes === 0) {
+    if (player.lifes === 0) {
       this.stop();
     }
   }
@@ -157,19 +155,23 @@ class Space {
     }
   }
 
-   colisionFriends() {
+  colisionFriends() {
     const player = this.player;
     this.friends.some(function (friend) {
       if (!friend.collided && player.crashed(friend)) {
         friend.collided = true;
         player.score++;
-        if(player.score === 4){
+        if (player.score === 4) {
           player.lifes++;
         }
+
         return player.crashed(friend);
       }
     });
-  } 
+    if (player.score === 6) {
+      this.win();
+    }
+  }
 
   displayScore() {
     this.ctx.font = "20px Star Jedi";
@@ -183,6 +185,6 @@ class Space {
     this.ctx.font = "40px Star Jedi";
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "red";
-    this.ctx.fillText("you won!!", 300, 350);
+    this.ctx.fillText("you saved them all!!", 300, 350);
   }
 }
