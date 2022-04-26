@@ -13,6 +13,7 @@ class Space {
     this.enemies = [];
     this.frames = 0;
     this.friends = [];
+    this.isActive = false;
   }
 
   drawBackground() {
@@ -27,6 +28,7 @@ class Space {
   }
 
   start() {
+    this.active = true;
     this.player = new Player(this);
     this.controls = new Controls(this);
     this.controls.keyboardEvents();
@@ -36,9 +38,10 @@ class Space {
   }
 
   stop() {
+    this.active = false;
     this.ctx.fillRect(0, 0, this.width, this.height);
     this.ctx.fillStyle = "yellow";
-    this.ctx.font = "30px Pathway Gothic One";
+    this.ctx.font = "30px Star Jedi";
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "red";
     this.ctx.fillText(
@@ -151,7 +154,7 @@ class Space {
   }
 
   displayScore() {
-    this.ctx.font = "20px serif";
+    this.ctx.font = "20px Star Jedi";
     this.ctx.fillStyle = "yellow";
     this.ctx.fillText(`${this.player.score} Saved Grogu`, 100, 60);
   }

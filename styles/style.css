@@ -1,36 +1,58 @@
-@import url("https://allfont.net/allfont.css?fonts=star-jedi");
+/* @import url("https://allfont.net/allfont.css?fonts=star-jedi"); */
+@import url(//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi);
+
+@font-face {
+  font-family: "Star Jedi";
+  src: url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.eot");
+  src: url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.eot?#iefix")
+      format("embedded-opentype"),
+    url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.woff2")
+      format("woff2"),
+    url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.woff")
+      format("woff"),
+    url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.ttf")
+      format("truetype"),
+    url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.svg#Star Jedi")
+      format("svg");
+}
+
+* {
+    font-family: "Star Jedi";
+}
 
 #game-board {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 5px solid yellow;
-    margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid yellow;
+  margin-top: 50px;
 }
 
 body {
-    background-color: black;
-
+  background-color: black;
 }
 
-.all{
-    display: flex;
-    justify-content: center;
-    
+.all {
+  display: flex;
+  justify-content: center;
 }
 
 .description {
-    display:flex;
-    color: yellow;
-    font-family:  "Star Jedi", arial;
-    height: 400px;
-    align-items: center;
-    justify-content: center;
-      flex-direction: column;
-
+  display: flex;
+  color: yellow;
+  font-family: "Star Jedi", arial;
+  height: 400px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 #start-button {
-    display: flex;
-  
+  display: flex;
+}
+
+#canvas {
+  background-image: url("/docs/assets/imgs/may\ the\ force\ be\ with\ you.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
