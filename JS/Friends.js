@@ -3,8 +3,8 @@ class Friends {
     this.space = space;
     this.x = Math.floor(Math.random() * 580);
     this.y = 0;
-    this.width = 45;
-    this.height = 40;
+    this.width = 40;
+    this.height = 35;
     this.imgFr = new Image();
     this.collided = false;
   }

@@ -9,6 +9,8 @@ class Player {
     this.lifes = 3;
     this.score = 0;
     
+    this.friendsCatched=[];
+    
     this.collided =false;
     
   }

@@ -14,6 +14,8 @@ class Space {
     this.frames = 0;
     this.friends = [];
     this.isActive = false;
+
+    this.winBg = new Image();
   }
 
   drawBackground() {
@@ -41,7 +43,7 @@ class Space {
     this.active = false;
     this.ctx.fillRect(0, 0, this.width, this.height);
     this.ctx.fillStyle = "yellow";
-    this.ctx.font = "30px Star Jedi";
+    this.ctx.font = "30px serif";
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "red";
     this.ctx.fillText(
@@ -73,9 +75,9 @@ class Space {
     });
     this.colisionEnemy();
     this.drawLifes();
-    this.colisionFriends();
-    //this.displayLifes();
     this.displayScore();
+    this.colisionFriends();
+    
   }
 
   createEnemies() {
@@ -104,11 +106,7 @@ class Space {
       this.stop();
     }
   }
-  // displayLifes() {
-  //   this.ctx.font = "20px serif";
-  //   this.ctx.fillStyle = "white";
-  //   this.ctx.fillText(`Lifes left: ${this.player.lifes}`, 50, 70);
-  // }
+
 
   drawLifes() {
     switch (this.player.lifes) {
@@ -150,23 +148,28 @@ class Space {
         player.score++;
         return player.crashed(friend);
       }
+
+      // if(player.score > 2){
+      //   player.lifes++;
+      // }
     });
+    if (player.score === 20) {
+      this.win();
+    }
   }
 
   displayScore() {
     this.ctx.font = "20px Star Jedi";
     this.ctx.fillStyle = "yellow";
-    this.ctx.fillText(`${this.player.score} Saved Grogu`, 100, 60);
+    this.ctx.fillText(`${this.player.score} Saved Grogu`, 80, 70);
   }
 
-  // gameOver() {
-  //   this.ctx.font = "30px Pathway Gothic One";
-  //   this.ctx.textAlign = "center";
-  //   this.ctx.fillStyle = "red";
-  //   this.ctx.fillText(
-  //     "GAME OVER",
-  //     this.canvas.width / 2,
-  //     this.canvas.height / 2
-  //   );
-  // }
+  win() {
+    clearInterval(this.intervalId);
+    this.drawBackground();
+    this.ctx.font = "40px serif";
+    this.ctx.textAlign = "center";
+    this.ctx.fillStyle = "red";
+    this.ctx.fillText("YOU WON!!", 300, 350);
+  }
 }

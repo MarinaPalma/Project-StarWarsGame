@@ -41,7 +41,9 @@ body {
   display: flex;
   color: yellow;
   font-family: "Star Jedi", arial;
+  font-size: 16px;
   height: 400px;
+ 
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -55,4 +57,9 @@ body {
   background-image: url("/docs/assets/imgs/may\ the\ force\ be\ with\ you.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
+}
+
+.logo{
+    height:70px;
+    width:120px;
 }
