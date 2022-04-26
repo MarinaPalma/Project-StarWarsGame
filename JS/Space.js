@@ -90,13 +90,13 @@ class Space {
 
   createEnemiesB() {
     if (this.frames % 180 === 0) {
-      this.enemiesB.push(new Enemy(this, this.imgB, 100, 60));
+      this.enemiesB.push(new Enemy(this, 100, 60));
     }
   }
 
   createEnemiesY() {
     if (this.frames % 300 === 0) {
-      this.enemiesY.push(new Enemy(this, this.imgY, 50, 30));
+      this.enemiesY.push(new Enemy(this, 50, 30));
     }
   }
 
@@ -135,16 +135,19 @@ class Space {
       if (!friend.collided && player.crashed(friend)) {
         friend.collided = true;
 
-        //player.lifes++;
-
+       
         player.score++;
+        if(player.score === 4){
+          player.lifes++;
+
+        }
         return player.crashed(friend);
       }
     });
-    if (this.player.score === 15) {
+    if (player.score === 15) {
       this.win();
     }
-    switch (this.player.lifes) {
+    switch (player.lifes) {
       case 3:
         this.ctx.fillStyle = "green";
         this.ctx.fillRect(10, 15, 300, 20);

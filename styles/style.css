@@ -37,17 +37,44 @@ body {
   justify-content: center;
 }
 
-.description {
-  display: flex;
-  color: yellow;
+/* .description {
+    overflow: hidden;
+    position:relative;
+    display: flex;
+    justify-content: center;
   font-family: "Star Jedi", arial;
-  font-size: 16px;
-  height: 400px;
- 
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  height: 800px;
+  perspective: 400px;
+    color: #feda4a;
+    font-size: 10px;
+    font-weight: 100;
+    letter-spacing: 3px;
+    line-height:100%;
+    text-align: justify;
 }
+
+.text{
+    position:relative;
+    top: -100px;
+    transform-origin: 50% 100%;   
+    position: relative;
+    transform-origin:50% 100%;
+    animation: crawl 150s linear;
+
+}
+
+
+@keyframes crawl {
+    0% {
+        top:0;
+        transform: rotateX(20deg) translateZ(0);
+    }
+    100%{
+        top: -6000px;
+        transform: rotateX(25deg) translateZ(-2500px)
+    }
+} */
+
 
 #start-button {
   display: flex;
@@ -63,3 +90,7 @@ body {
     height:70px;
     width:120px;
 }
+/* 
+align-items: center;
+justify-content: center;
+flex-direction: column; */

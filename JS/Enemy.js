@@ -1,11 +1,11 @@
 class Enemy {
-  constructor(space, img, width,height) {
+  constructor(space, width, height) {
     this.space = space;
     this.x = Math.floor(Math.random() * 600);
     this.y = 0;
     this.width = width;
     this.height = height;
-      this.img = img;
+
       this.imgB = new Image();
       this.imgY = new Image();
   
