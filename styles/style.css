@@ -20,32 +20,37 @@
   font-family: "Star Jedi";
 }
 
+body {
+  background-image: url(/docs/assets/imgs/background\ html.jpg);
+  box-sizing:border-box;
+}
+
 #game-board {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   border: 5px solid yellow;
-  margin-top: 50px;
 }
 
-body {
-  background-image: url(/docs/assets/imgs/background\ html.jpg);
-}
+
 
 .all {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  align-items: center;
+  height: 100vh;
+  
 }
 
 .description {
   overflow: hidden;
   position: relative;
   display: flex;
+  align-items: flex-end;
   justify-content: center;
   font-family: "Star Jedi", arial;
-  height: 500px;
-  perspective: 300px;
+  height: 800px;
+  perspective: 400px;
   color: #feda4a;
   font-size: 22px;
   font-weight: 100;
@@ -72,14 +77,14 @@ body {
   }
 }
 
-#start-button {
-  display: flex;
-}
 
-#canvas {
+#startScr {
   background-image: url("/docs/assets/imgs/may\ the\ force\ be\ with\ you.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  width:700px;
+  height: 600px;
+
 }
 
 #logo {
@@ -92,13 +97,20 @@ body {
   align-items: center;
   justify-content: center;
   width: 400px;
+flex-direction: column;
 }
 
 .main {
-  display: flex;
+  display: none;
   align-items: center;
-
+background-image: url(/docs/assets/imgs/background\ html.jpg);
   flex-direction: column;
   align-self: flex-start;
-  width: 400px;
+  width: 700px;
+  height: 600px;
+  margin:5px;
+}
+
+#restart-button{
+display: none;
 }

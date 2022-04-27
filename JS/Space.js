@@ -47,7 +47,7 @@ class Space {
     this.ctx.textAlign = "center";
     this.ctx.fillStyle = "red";
     this.ctx.fillText(
-      `you failed your mission.\nonly ${this.player.score} Grogu saved`,
+      `you failed your mission. ${this.player.score} Grogu saved`,
       this.canvas.width / 2,
       this.canvas.height / 2
     );

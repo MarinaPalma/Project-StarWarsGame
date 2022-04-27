@@ -26,29 +26,11 @@ class Enemy {
   }
 
   drawEnemy() {
-    if(this.ship === "fighter"){
+    if (this.ship === "fighter") {
       this.img.src = "/docs/assets/imgs/fighter.png";
-    }else{
+    } else {
       this.img.src = "/docs/assets/imgs/new fighter yellow.png";
     }
-    this.space.ctx.drawImage(
-      this.img,
-      this.x,
-      this.y,
-      this.width,
-      this.height
-    );
+    this.space.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
-
-  // drawEnemyY() {
-  //   this.imgY.src = "/docs/assets/imgs/new fighter yellow.png";
-  //   this.space.ctx.drawImage(
-  //     this.imgY,
-  //     this.x,
-  //     this.y,
-  //     this.width,
-  //     this.height);
-  // }
 }
-//this.width = 100;
-//this.height = 60;

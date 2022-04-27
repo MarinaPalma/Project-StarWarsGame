@@ -13,7 +13,11 @@
 
 <body>
     <div class="all">
-        <div class="main">
+        <div id = "startScr">
+
+        </div>
+
+        <div class="main" id="mainSc">
 
             <section class="description">
                 <div class="text">
@@ -25,24 +29,31 @@
                 </div>
             </section>
 
-            <button id="start-button">Start Game</button>
+
         </div>
+
+
+
+
         <div id="game-board">
             <canvas id="canvas" width="700" height="600"></canvas>
         </div>
         <div class="logo-container">
             <img src="/docs/assets/imgs/Star_Wars_Logo.svg.png" alt="star wars logo" id="logo" />
+            <button id="start-button">Start Game</button>
+            <button id="restart-button">Restart Game</button>
         </div>
+
         <!-- <audio preload="auto" autoplay>
             <source src="/docs/assets/sounds/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mpeg">
         </audio> -->
-
-        <script src="JS/Controls.js"></script>
-        <script src="JS/Enemy.js"></script>
-        <script src="Js/Friends.js"></script>
-        <script src="JS/Player.js"></script>
-        <script src="JS/Space.js"></script>
-        <script src="JS/window.js"></script>
+    </div>
+    <script src="JS/Controls.js"></script>
+    <script src="JS/Enemy.js"></script>
+    <script src="Js/Friends.js"></script>
+    <script src="JS/Player.js"></script>
+    <script src="JS/Space.js"></script>
+    <script src="JS/window.js"></script>
 
 </body>
 
