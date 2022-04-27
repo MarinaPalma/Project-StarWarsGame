@@ -14,6 +14,7 @@ class Space {
     this.frames = 0;
     this.friends = [];
     this.isActive = false;
+    this.soundTie = new Audio("/docs/assets/sounds/tiekillsx.wav");
 
     this.winBg = new Image();
   }
@@ -40,17 +41,22 @@ class Space {
   }
 
   stop() {
+    const gameOverScreen = document.getElementById('game-over')
+    this.canvas.style.display = "none"
+    gameOverScreen.style.display = "flex"
+    gameOverScreen.style.backgroundColor = "red"
+    gameOverScreen.innerHTML = `you failed your mission. ${this.player.score} / 12 Grogu saved`
     this.active = false;
-    this.ctx.fillStyle = "yellow";
-    this.ctx.fillRect(0, 0, this.width, this.height);
-    this.ctx.font = "20px Star Jedi";
-    this.ctx.textAlign = "center";
-    this.ctx.fillStyle = "red";
-    this.ctx.fillText(
-      `you failed your mission. ${this.player.score} Grogu saved`,
-      this.canvas.width / 2,
-      this.canvas.height / 2
-    );
+    // this.ctx.fillStyle = "red";
+    // this.ctx.fillRect(0, 0, this.width, this.height);
+    // this.ctx.font = "20px Star Jedi";
+    // this.ctx.textAlign = "center";
+    // this.ctx.fillStyle = "yellow";
+    // this.ctx.fillText(
+    //   `you failed your mission. ${this.player.score} / 12 Grogu saved`,
+    //   this.canvas.width / 2,
+    //   this.canvas.height / 2
+    // );
     clearInterval(this.intervalId);
   }
 
@@ -74,14 +80,14 @@ class Space {
 
     this.createFriends();
     this.friends.forEach((friend) => {
-      friend.y += 2;
+      friend.y += 3;
       if (!friend.collided) {
         friend.drawFriend();
       }
     });
     this.drawLifes();
-    this.colisionEnemy();
     this.displayScore();
+    this.colisionEnemy();
     this.colisionFriends();
   }
 
@@ -161,14 +167,14 @@ class Space {
       if (!friend.collided && player.crashed(friend)) {
         friend.collided = true;
         player.score++;
-        if (player.score === 4) {
+        if (player.score % 4 === 0) {
           player.lifes++;
         }
 
         return player.crashed(friend);
       }
     });
-    if (player.score === 6) {
+    if (player.score === 12) {
       this.win();
     }
   }
@@ -180,11 +186,11 @@ class Space {
   }
 
   win() {
+    const gameOverScreen = document.getElementById('game-over')
+    this.canvas.style.display = "none"
+    gameOverScreen.style.display = "flex"
+    gameOverScreen.style.backgroundColor = "green"
+    gameOverScreen.innerHTML = `"Great job! you saved them all!!`
     clearInterval(this.intervalId);
-    this.drawBackground();
-    this.ctx.font = "40px Star Jedi";
-    this.ctx.textAlign = "center";
-    this.ctx.fillStyle = "red";
-    this.ctx.fillText("you saved them all!!", 300, 350);
   }
 }

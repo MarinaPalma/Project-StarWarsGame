@@ -25,10 +25,8 @@ body {
   box-sizing:border-box;
 }
 
-#game-board {
+#canvas {
   display: none;
-  justify-content: center;
-  align-items: center;
   border: 5px solid yellow;
 }
 
@@ -63,7 +61,7 @@ body {
   position: relative;
   top: -300px;
   transform-origin: 50% 100%;
-  animation: crawl 300s linear;
+  animation: crawl 500s linear;
 }
 
 @keyframes crawl {
@@ -113,4 +111,28 @@ background-image: url(/docs/assets/imgs/background\ html.jpg);
 
 #restart-button{
 display: none;
+font-size: 16px;
+padding:8px;
+border-radius: 12px;
+text-align: center;
+line-height: 2;
+}
+
+#start-button{
+    font-size: 16px;
+    padding:8px;
+    border-radius: 12px;
+    text-align: center;
+    line-height: 2;
+
+
+}
+#game-over{
+    width:700px;
+    height: 600px;
+    background-color: blueviolet;
+    color:white;
+    display: none;
+    justify-content: center;
+    align-items: center;
 }

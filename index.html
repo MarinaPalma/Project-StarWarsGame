@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi" rel="stylesheet"
-        type="text/css" />
-    <link rel="stylesheet" href="styles/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
     <title>A kind of StarWars Game</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="all">
-        <div id = "startScr">
+      <div id="startScr"></div>
 
-        </div>
+      <div class="main" id="mainSc">
+        <section class="description">
+          <div class="text">
+            <p>
+              A long time ago in a galaxy far, far away...<br />
+              Grogu´s planet was attacked and fell into the Dark Side. <br />
+              You must help the Resistance and rescue the 12 Grogu that
+              escaped...<br />
+              Be aware of the enemies. You have 3 tries (and extra life every 4
+              Grogu´s catched) <br />
+              We are counting on you!
+            </p>
+          </div>
+        </section>
+      </div>
 
-        <div class="main" id="mainSc">
+      <div id="game-board">
+        <canvas id="canvas" width="700" height="600"></canvas>
+      </div>
 
-            <section class="description">
-                <div class="text">
-                    <p>A long time ago in a galaxy far, far away...<br>
-                        Grogu´s planet was attacked and fell into the Dark Side. <br>
-                        You must help the Resistance and rescue the 15 Grogu that escaped...<br>
-                        Be aware of the enemies. You have 3 tries (or more if you find the ...) <br>
-                        We are counting on you!</p>
-                </div>
-            </section>
+      <div id="game-over"></div>
 
+      <div class="logo-container">
+        <img
+          src="/docs/assets/imgs/Star_Wars_Logo.svg.png"
+          alt="star wars logo"
+          id="logo"
+        />
+        <button id="start-button">Start Game</button>
+        <button id="restart-button">Restart Game</button>
+      </div>
 
-        </div>
-
-
-
-
-        <div id="game-board">
-            <canvas id="canvas" width="700" height="600"></canvas>
-        </div>
-        <div class="logo-container">
-            <img src="/docs/assets/imgs/Star_Wars_Logo.svg.png" alt="star wars logo" id="logo" />
-            <button id="start-button">Start Game</button>
-            <button id="restart-button">Restart Game</button>
-        </div>
-
-        <!-- <audio preload="auto" autoplay>
+      <!-- <audio preload="auto" autoplay>
             <source src="/docs/assets/sounds/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mpeg">
         </audio> -->
     </div>
@@ -54,7 +59,5 @@
     <script src="JS/Player.js"></script>
     <script src="JS/Space.js"></script>
     <script src="JS/window.js"></script>
-
-</body>
-
+  </body>
 </html>
