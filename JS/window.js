@@ -6,7 +6,7 @@ const restartBt = document.getElementById("restart-button");
 const startBt = document.getElementById("start-button");
 const gameOverScreen = document.getElementById('game-over')
 const soundBeg = new Audio(
-  "/docs/assets/sounds/Star_Wars_original_opening_crawl_1977.mp3"
+  "docs/assets/sounds/Star_Wars_original_opening_crawl_1977.mp3"
 );
 
 // function startGame() {
@@ -58,7 +58,7 @@ window.onload = () => {
   
     };
 };
-
+//17000
 
 
 

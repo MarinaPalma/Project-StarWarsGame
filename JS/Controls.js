@@ -10,11 +10,13 @@ class Controls {
         case "ArrowRight":
           if (this.player.x + this.player.width < 670) {
             this.player.moveRight();
+            this.player.changeImg();
           }
           break;
         case "ArrowLeft":
           if (this.player.x > 20) {
             this.player.moveLeft();
+            this.player.changeImg();
           }
           break;
       }

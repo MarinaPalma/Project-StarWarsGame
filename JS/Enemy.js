@@ -27,9 +27,9 @@ class Enemy {
 
   drawEnemy() {
     if (this.ship === "fighter") {
-      this.img.src = "/docs/assets/imgs/fighter.png";
+      this.img.src = "docs/assets/imgs/fighter.png";
     } else {
-      this.img.src = "/docs/assets/imgs/new fighter yellow.png";
+      this.img.src = "docs/assets/imgs/new fighter yellow.png";
     }
     this.space.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }

@@ -14,13 +14,13 @@ class Space {
     this.frames = 0;
     this.friends = [];
     this.isActive = false;
-    this.soundTie = new Audio("/docs/assets/sounds/tiekillsx.wav");
+    this.soundTie = new Audio("docs/assets/sounds/tiekillsx.wav");
 
     this.winBg = new Image();
   }
 
   drawBackground() {
-    this.backGround.src = "/docs/assets/imgs/backGround2.jpg";
+    this.backGround.src = "docs/assets/imgs/backGround2.jpg";
     this.ctx.drawImage(
       this.backGround,
       this.x,
@@ -41,11 +41,11 @@ class Space {
   }
 
   stop() {
-    const gameOverScreen = document.getElementById('game-over')
-    this.canvas.style.display = "none"
-    gameOverScreen.style.display = "flex"
-    gameOverScreen.style.backgroundColor = "red"
-    gameOverScreen.innerHTML = `you failed your mission. ${this.player.score} / 12 Grogu saved`
+    const gameOverScreen = document.getElementById("game-over");
+    this.canvas.style.display = "none";
+    gameOverScreen.style.display = "flex";
+    gameOverScreen.style.backgroundColor = "red";
+    gameOverScreen.innerHTML = `you failed your mission. ${this.player.score} / 12 Grogu saved`;
     this.active = false;
     // this.ctx.fillStyle = "red";
     // this.ctx.fillRect(0, 0, this.width, this.height);
@@ -80,11 +80,16 @@ class Space {
 
     this.createFriends();
     this.friends.forEach((friend) => {
-      friend.y += 3;
+      if (friend.droid === "Grogu") {
+        friend.y += 2;
+      } else {
+        friend.y += 2;
+      }
       if (!friend.collided) {
         friend.drawFriend();
       }
     });
+
     this.drawLifes();
     this.displayScore();
     this.colisionEnemy();
@@ -96,14 +101,18 @@ class Space {
       this.enemies.push(new Enemy(this, "fighter", 100, 60));
     }
 
-    if (this.frames % 300 === 0) {
-      this.enemies.push(new Enemy(this, "yellow fighter", 50, 30));
+    if (this.frames % 200 === 0) {
+      this.enemies.push(new Enemy(this, "yellow fighter", 60, 35));
     }
   }
 
   createFriends() {
     if (this.frames % 350 === 0) {
-      this.friends.push(new Friends(this));
+      this.friends.push(new Friends(this, "Grogu", 40, 35));
+    }
+
+    if (this.frames % 900 === 0 && this.player.lifes === 1) {
+      this.friends.push(new Friends(this, "Bo", 30, 40));
     }
   }
 
@@ -166,15 +175,23 @@ class Space {
     this.friends.some(function (friend) {
       if (!friend.collided && player.crashed(friend)) {
         friend.collided = true;
-        player.score++;
-        if (player.score % 4 === 0) {
+        if (friend.droid === "Grogu") {
+          player.score++;
+        }
+        if (friend.droid === "Bo" && player.lifes < 3) {
           player.lifes++;
         }
+
+        // friend.collided = true;
+        // player.score++;
+        // if (player.score % 4 === 0) {
+        //   player.lifes++;
+        // }
 
         return player.crashed(friend);
       }
     });
-    if (player.score === 12) {
+    if (player.score === 15) {
       this.win();
     }
   }
@@ -182,15 +199,15 @@ class Space {
   displayScore() {
     this.ctx.font = "20px Star Jedi";
     this.ctx.fillStyle = "yellow";
-    this.ctx.fillText(`${this.player.score} Saved Grogu`, 80, 70);
+    this.ctx.fillText(`${this.player.score} Saved Grogu`, 30, 70);
   }
 
   win() {
-    const gameOverScreen = document.getElementById('game-over')
-    this.canvas.style.display = "none"
-    gameOverScreen.style.display = "flex"
-    gameOverScreen.style.backgroundColor = "green"
-    gameOverScreen.innerHTML = `"Great job! you saved them all!!`
+    const gameOverScreen = document.getElementById("game-over");
+    this.canvas.style.display = "none";
+    gameOverScreen.style.display = "flex";
+    gameOverScreen.style.backgroundColor = "green";
+    gameOverScreen.innerHTML = `"Great job! you saved them all!!`;
     clearInterval(this.intervalId);
   }
 }
