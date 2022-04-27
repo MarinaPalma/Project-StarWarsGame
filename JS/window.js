@@ -9,12 +9,7 @@ const soundBeg = new Audio(
   "docs/assets/sounds/Star_Wars_original_opening_crawl_1977.mp3"
 );
 
-// function startGame() {
-//   if (!game) {
-//     game = new Space();
-//     game.start();
-//   }
-// }; 
+
 
 
 
@@ -25,13 +20,15 @@ restartBt.style.display="flex";
   if (!game) {
     game = new Space();
     game.canvas.style.display="flex";
+    
   }
-  if (!game.isActive) {
+  if (!game.active) {
     clearInterval(game.intervalId);
     game.ctx.clearRect(0, 0, game.width, game.height);
     game = new Space();
     game.canvas.style.display="flex";
     game.start();
+    game.countTime();
   }
 }
 
@@ -46,7 +43,7 @@ window.onload = () => {
     descriptionScr.style.display="none";
     // canvasScr.style.display = "flex"
     startGame();
-  }, 17000);
+  }, 18000);
 
   };
 
@@ -58,7 +55,7 @@ window.onload = () => {
   
     };
 };
-//17000
+
 
 
 
@@ -73,4 +70,10 @@ window.onload = () => {
 
 //   let game = null;
 
+// function startGame() {
+//   if (!game) {
+//     game = new Space();
+//     game.start();
+//   }
+// }; 
 

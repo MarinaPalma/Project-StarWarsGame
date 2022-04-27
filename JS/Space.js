@@ -13,9 +13,10 @@ class Space {
     this.enemies = [];
     this.frames = 0;
     this.friends = [];
-    this.isActive = false;
+    this.active = false;
     this.soundTie = new Audio("docs/assets/sounds/tiekillsx.wav");
-
+    this.seconds = 0;
+    this.timer = null;
     this.winBg = new Image();
   }
 
@@ -45,18 +46,9 @@ class Space {
     this.canvas.style.display = "none";
     gameOverScreen.style.display = "flex";
     gameOverScreen.style.backgroundColor = "red";
-    gameOverScreen.innerHTML = `you failed your mission. ${this.player.score} / 12 Grogu saved`;
+    gameOverScreen.innerHTML = `you failed your mission. ${this.player.score} / 15 Grogu saved`;
     this.active = false;
-    // this.ctx.fillStyle = "red";
-    // this.ctx.fillRect(0, 0, this.width, this.height);
-    // this.ctx.font = "20px Star Jedi";
-    // this.ctx.textAlign = "center";
-    // this.ctx.fillStyle = "yellow";
-    // this.ctx.fillText(
-    //   `you failed your mission. ${this.player.score} / 12 Grogu saved`,
-    //   this.canvas.width / 2,
-    //   this.canvas.height / 2
-    // );
+    this.countTime();
     clearInterval(this.intervalId);
   }
 
@@ -182,12 +174,6 @@ class Space {
           player.lifes++;
         }
 
-        // friend.collided = true;
-        // player.score++;
-        // if (player.score % 4 === 0) {
-        //   player.lifes++;
-        // }
-
         return player.crashed(friend);
       }
     });
@@ -207,7 +193,19 @@ class Space {
     this.canvas.style.display = "none";
     gameOverScreen.style.display = "flex";
     gameOverScreen.style.backgroundColor = "green";
-    gameOverScreen.innerHTML = `"Great job! you saved them all!!`;
+    gameOverScreen.innerHTML = `"Great job! you saved them all in ${this.seconds} seconds`;
+    this.active = false;
+    this.countTime();
     clearInterval(this.intervalId);
+  }
+
+  countTime() {
+    if (this.active) {
+      this.timer = setInterval(() => {
+        this.seconds++;
+      }, 1000);
+    } else {
+      clearInterval(this.timer);
+    }
   }
 }
