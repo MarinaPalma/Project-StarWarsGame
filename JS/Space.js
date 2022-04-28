@@ -92,7 +92,6 @@ class Space {
     this.displayScore();
     this.colisionEnemy();
     this.colisionFriends();
-   
   }
 
   createEnemies() {
@@ -184,7 +183,7 @@ class Space {
         return player.crashed(friend);
       }
     });
-    if (player.score === 1) {
+    if (player.score === 15) {
       this.win();
       this.highScoreStorage();
     }
@@ -222,7 +221,7 @@ class Space {
     //localStorage.setItem("highscore", "200");
     //console.log(this.highScore);
 
-   // localStorage.removeItem('highscore');
+    // localStorage.removeItem('highscore');
 
     if (this.highScore > this.seconds) {
       this.highScore = this.seconds;
@@ -238,7 +237,6 @@ class Space {
     this.storage = localStorage.getItem("highscore");
     if (this.storage) {
       this.highScore = this.storage;
-
     }
     document.getElementsByClassName(
       "HighScore"
