@@ -184,7 +184,7 @@ class Space {
         return player.crashed(friend);
       }
     });
-    if (player.score === 15) {
+    if (player.score === 1) {
       this.win();
       this.highScoreStorage();
     }
@@ -221,6 +221,9 @@ class Space {
   highScoreStorage() {
     //localStorage.setItem("highscore", "200");
     //console.log(this.highScore);
+
+   // localStorage.removeItem('highscore');
+
     if (this.highScore > this.seconds) {
       this.highScore = this.seconds;
 

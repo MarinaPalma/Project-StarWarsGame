@@ -37,7 +37,7 @@ window.onload = () => {
       descriptionScr.style.display = "none";
       // canvasScr.style.display = "flex"
       startGame();
-    }, 18000);
+    }, 1000);
   };
 
   document.getElementById("restart-button").onclick = () => {
@@ -48,7 +48,10 @@ window.onload = () => {
   };
 };
 
-//  window.onload = () => {
+
+
+//18000
+////  window.onload = () => {
 //   document.getElementById("start-button").onclick = () => {
 //     startGame();
 //   };
