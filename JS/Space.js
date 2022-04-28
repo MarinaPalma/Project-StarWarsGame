@@ -17,7 +17,8 @@ class Space {
     this.soundTie = new Audio("./docs/assets/sounds/tiekillsx.wav");
     this.seconds = 0;
     this.timer = null;
-    this.highScore = localStorage.getItem("highScore");
+    this.highScore = 0;
+    this.storage = null;
     this.winBg = new Image();
   }
 
@@ -37,6 +38,9 @@ class Space {
     this.player = new Player(this);
     this.controls = new Controls(this);
     this.controls.keyboardEvents();
+
+    this.checkHighS();
+
     this.intervalId = setInterval(() => {
       this.update();
     }, 1000 / 60);
@@ -50,6 +54,7 @@ class Space {
     gameOverScreen.innerHTML = `you failed your mission. ${this.player.score} / 15 Grogu saved`;
     this.active = false;
     this.countTime();
+
     clearInterval(this.intervalId);
   }
 
@@ -87,6 +92,7 @@ class Space {
     this.displayScore();
     this.colisionEnemy();
     this.colisionFriends();
+   
   }
 
   createEnemies() {
@@ -178,7 +184,7 @@ class Space {
         return player.crashed(friend);
       }
     });
-    if (player.score === 1) {
+    if (player.score === 15) {
       this.win();
       this.highScoreStorage();
     }
@@ -198,6 +204,7 @@ class Space {
     gameOverScreen.innerHTML = `"Great job! you saved them all in ${this.seconds} seconds`;
     this.active = false;
     this.countTime();
+    this.highScoreStorage();
     clearInterval(this.intervalId);
   }
 
@@ -212,10 +219,26 @@ class Space {
   }
 
   highScoreStorage() {
-    //localStorage.setItem("highScore", '50');
+    //localStorage.setItem("highscore", "200");
     //console.log(this.highScore);
-    if (this.seconds < this.highScore) {
-      localStorage.setItem("highScore", this.seconds);
+    if (this.highScore > this.seconds) {
+      this.highScore = this.seconds;
+
+      localStorage.setItem("highscore", this.highScore);
     }
+    document.getElementsByClassName(
+      "HighScore"
+    )[0].innerHTML = `Highscore: ${this.highScore} sec`;
+  }
+
+  checkHighS() {
+    this.storage = localStorage.getItem("highscore");
+    if (this.storage) {
+      this.highScore = this.storage;
+
+    }
+    document.getElementsByClassName(
+      "HighScore"
+    )[0].innerHTML = `Highscore: ${this.highScore} sec`;
   }
 }
