@@ -17,7 +17,7 @@ class Space {
     this.soundTie = new Audio("./docs/assets/sounds/tiekillsx.wav");
     this.seconds = 0;
     this.timer = null;
-    this.highScore = 0;
+    this.highScore = 200;
     this.storage = null;
     this.winBg = new Image();
   }
@@ -185,7 +185,7 @@ class Space {
         return player.crashed(friend);
       }
     });
-    if (player.score === 2) {
+    if (player.score === 15) {
       this.win();
       this.highScoreStorage();
     }
@@ -225,7 +225,7 @@ class Space {
 
     // localStorage.removeItem('highscore');
 
-    if (this.highScore < this.seconds) {
+    if (this.highScore > this.seconds) {
       this.highScore = this.seconds;
 
       localStorage.setItem("highscore", this.highScore);
