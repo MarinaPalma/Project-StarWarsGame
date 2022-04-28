@@ -1,6 +1,5 @@
 let game = null;
 const descriptionScr = document.getElementById("mainSc");
-// const canvasScr = document.getElementById("game-board");
 const startScr = document.getElementById("startScr");
 const restartBt = document.getElementById("restart-button");
 const startBt = document.getElementById("start-button");
@@ -35,7 +34,6 @@ window.onload = () => {
 
     setTimeout(() => {
       descriptionScr.style.display = "none";
-      // canvasScr.style.display = "flex"
       startGame();
     }, 18000);
   };
@@ -47,18 +45,3 @@ window.onload = () => {
     startGame();
   };
 };
-
-//18000
-////  window.onload = () => {
-//   document.getElementById("start-button").onclick = () => {
-//     startGame();
-//   };
-
-//   let game = null;
-
-// function startGame() {
-//   if (!game) {
-//     game = new Space();
-//     game.start();
-//   }
-// };

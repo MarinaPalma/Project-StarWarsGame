@@ -10,7 +10,7 @@
       type="text/css"
     />
     <link rel="stylesheet" href="styles/style.css" />
-    <title>A kind of StarWars Game</title>
+    <title>A StarWars Game</title>
   </head>
 
   <body>
@@ -23,10 +23,10 @@
             <p>
               A long time ago in a galaxy far, far away...<br />
               Grogu´s planet was attacked and fell into the Dark Side. <br />
-              You must help the Resistance and rescue the 15 Grogu that
-              escaped...<br />
-              Be aware of the enemies. You have 3 tries (and extra life if you
-              also catch de B-0) <br />
+              You must help the Resistance and rescue all the 15 Grogu. Try to
+              save them as fast as<br />
+              you can, but be aware of the enemies. You have 3 tries (and one
+              extra if you manage to catch B-0). <br />
               We are counting on you!
             </p>
           </div>
@@ -39,7 +39,11 @@
 
       <div id="game-over"></div>
 
+
+      
+
       <div class="logo-container">
+          <div id="timer"></div>
         <img
           src="docs/assets/imgs/Star_Wars_Logo.svg.png"
           alt="star wars logo"
@@ -47,9 +51,9 @@
         />
         <button id="start-button">Start Game</button>
         <button id="restart-button">Restart Game</button>
-              <div class="HighScore"></div>
+        <div class="HighScore"></div>
+        <div><img src="./docs/assets/imgs/arrows.png" alt="comands arrow right and arrow left" id ="arrows"/></div>
       </div>
-
     </div>
     <script src="JS/Controls.js"></script>
     <script src="JS/Enemy.js"></script>

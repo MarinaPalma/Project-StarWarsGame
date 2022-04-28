@@ -14,10 +14,10 @@ class Space {
     this.frames = 0;
     this.friends = [];
     this.active = false;
-    this.soundTie = new Audio("./docs/assets/sounds/tiekillsx.wav");
     this.seconds = 0;
     this.timer = null;
-    this.highScore = 200;
+    this.highScore = localStorage.getItem("highscore")
+    //this.highScore = 200;
     this.storage = null;
     this.winBg = new Image();
   }
@@ -38,9 +38,7 @@ class Space {
     this.player = new Player(this);
     this.controls = new Controls(this);
     this.controls.keyboardEvents();
-
-    this.checkHighS();
-
+    this.highScoreStorage();
     this.intervalId = setInterval(() => {
       this.update();
     }, 1000 / 60);
@@ -50,13 +48,9 @@ class Space {
     const gameOverScreen = document.getElementById("game-over");
     this.canvas.style.display = "none";
     gameOverScreen.style.display = "flex";
-    // gameOverScreen.style.backgroundImage = "./docs/assets/imgs/backGround2.jpg";
     gameOverScreen.innerHTML = `you failed your mission. ${this.player.score} / 15 Grogu saved`;
     this.active = false;
     this.countTime();
-
-    //this.highScoreStorage();
-
     clearInterval(this.intervalId);
   }
 
@@ -187,21 +181,19 @@ class Space {
     });
     if (player.score === 15) {
       this.win();
-      this.highScoreStorage();
-    }
+       }
   }
 
   displayScore() {
     this.ctx.font = "20px Star Jedi";
     this.ctx.fillStyle = "yellow";
-    this.ctx.fillText(`${this.player.score} Saved Grogu`, 30, 70);
+    this.ctx.fillText(`${this.player.score} / 15 Saved Grogu`, 30, 70);
   }
 
   win() {
     const gameOverScreen = document.getElementById("game-over");
     this.canvas.style.display = "none";
     gameOverScreen.style.display = "flex";
-    // gameOverScreen.style.backgroundColor = "green";
     gameOverScreen.innerHTML = `Great job! you saved them all in ${this.seconds} seconds`;
     this.active = false;
     this.countTime();
@@ -213,35 +205,31 @@ class Space {
     if (this.active) {
       this.timer = setInterval(() => {
         this.seconds++;
+        document.getElementById("timer").innerHTML = `score: ${this.seconds}`;
       }, 1000);
     } else {
       clearInterval(this.timer);
     }
   }
 
-  highScoreStorage() {
-    //localStorage.setItem("highscore", "200");
-    //console.log(this.highScore);
+ highScoreStorage() {
 
-    // localStorage.removeItem('highscore');
-
-    if (this.highScore > this.seconds) {
+    if (this.highScore <  this.seconds) {
       this.highScore = this.seconds;
 
       localStorage.setItem("highscore", this.highScore);
     }
-    document.getElementsByClassName(
-      "HighScore"
-    )[0].innerHTML = `Highscore: ${this.highScore} sec`;
+    if(this.highScore){
+      document.getElementsByClassName(
+        "HighScore"
+      )[0].innerHTML = `Highscore: ${this.highScore} sec`;
+    }else{
+      document.getElementsByClassName(
+        "HighScore"
+      )[0].innerHTML = `Highscore: 200 sec`;
+    }
+    
   }
 
-  checkHighS() {
-    this.storage = localStorage.getItem("highscore");
-    if (this.storage) {
-      this.highScore = this.storage;
-    }
-    document.getElementsByClassName(
-      "HighScore"
-    )[0].innerHTML = `Highscore: ${this.highScore} sec`;
-  }
+
 }
