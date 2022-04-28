@@ -50,7 +50,7 @@ class Space {
     const gameOverScreen = document.getElementById("game-over");
     this.canvas.style.display = "none";
     gameOverScreen.style.display = "flex";
-    gameOverScreen.style.backgroundColor = "red";
+    // gameOverScreen.style.backgroundImage = "./docs/assets/imgs/backGround2.jpg";
     gameOverScreen.innerHTML = `you failed your mission. ${this.player.score} / 15 Grogu saved`;
     this.active = false;
     this.countTime();
@@ -201,8 +201,8 @@ class Space {
     const gameOverScreen = document.getElementById("game-over");
     this.canvas.style.display = "none";
     gameOverScreen.style.display = "flex";
-    gameOverScreen.style.backgroundColor = "green";
-    gameOverScreen.innerHTML = `"Great job! you saved them all in ${this.seconds} seconds`;
+    // gameOverScreen.style.backgroundColor = "green";
+    gameOverScreen.innerHTML = `Great job! you saved them all in ${this.seconds} seconds`;
     this.active = false;
     this.countTime();
     this.highScoreStorage();

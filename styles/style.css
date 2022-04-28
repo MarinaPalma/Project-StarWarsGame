@@ -123,9 +123,11 @@ body {
 #game-over {
   width: 700px;
   height: 600px;
-  background-color: blueviolet;
+  background-image: "./docs/assets/imgs/backGround2.jpg";
   color: white;
+  font-size: 24px;
   display: none;
+  text-align: center;
   justify-content: center;
   align-items: center;
 }
