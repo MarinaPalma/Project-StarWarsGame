@@ -5,20 +5,24 @@ class Player {
     this.y = 495;
     this.width = 50;
     this.height = 90;
-    this.imgBB = new Image();
+
+    // this.imgBB = new Image();
+    const img = new Image();
+    img.addEventListener("load", () => {
+      this.imgBB = img;
+    });
+    img.src = "./docs/assets/imgs/bb8_front.png";
     this.lifes = 3;
     this.score = 0;
-    this.img = "./docs/assets/imgs/bb8 front.png";
 
-    this.friendsCatched=[];
-    
-    this.collided =false;
-    
+    this.friendsCatched = [];
+
+    this.collided = false;
+    this.src = "./docs/assets/imgs/bb8_front.png";
   }
 
   drawPlayer() {
-
-    this.imgBB.src = this.img;
+    this.imgBB.src = this.src;
     this.space.ctx.drawImage(
       this.imgBB,
       this.x,
@@ -61,12 +65,10 @@ class Player {
   }
 
   changeImg() {
-    if(this.img === "./docs/assets/imgs/bb8 front.png"){
-      this.img = "./docs/assets/imgs/bb8 back.png";  
-    }else{
-      this.img = "./docs/assets/imgs/bb8 front.png"
+    if (this.src === "./docs/assets/imgs/bb8_front.png") {
+      this.src = "./docs/assets/imgs/bb8_back.png";
+    } else {
+      this.src = "./docs/assets/imgs/bb8_front.png";
     }
   }
-
-
 }

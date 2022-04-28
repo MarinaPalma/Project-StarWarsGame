@@ -55,6 +55,8 @@ class Space {
     this.active = false;
     this.countTime();
 
+    //this.highScoreStorage();
+
     clearInterval(this.intervalId);
   }
 
@@ -99,7 +101,7 @@ class Space {
       this.enemies.push(new Enemy(this, "fighter", 100, 60));
     }
 
-    if (this.frames % 200 === 0) {
+    if (this.frames % 180 === 0) {
       this.enemies.push(new Enemy(this, "yellow fighter", 60, 35));
     }
   }
@@ -183,7 +185,7 @@ class Space {
         return player.crashed(friend);
       }
     });
-    if (player.score === 15) {
+    if (player.score === 2) {
       this.win();
       this.highScoreStorage();
     }
@@ -223,7 +225,7 @@ class Space {
 
     // localStorage.removeItem('highscore');
 
-    if (this.highScore > this.seconds) {
+    if (this.highScore < this.seconds) {
       this.highScore = this.seconds;
 
       localStorage.setItem("highscore", this.highScore);
