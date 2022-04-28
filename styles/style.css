@@ -22,7 +22,7 @@
 
 body {
   background-image: url("../docs/assets/imgs/backgroundhtml.jpg");
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 #canvas {
@@ -30,14 +30,11 @@ body {
   border: 5px solid yellow;
 }
 
-
-
 .all {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  
 }
 
 .description {
@@ -75,14 +72,12 @@ body {
   }
 }
 
-
 #startScr {
   background-image: url("../docs/assets/imgs/may_the_force.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width:700px;
+  width: 700px;
   height: 600px;
-
 }
 
 #logo {
@@ -95,55 +90,49 @@ body {
   align-items: center;
   justify-content: center;
   width: 400px;
-flex-direction: column;
+  flex-direction: column;
 }
 
 .main {
   display: none;
   align-items: center;
-background-image: url(/docs/assets/imgs/background\ html.jpg);
+  background-image: url("../docs/assets/imgs/backgroundhtml.jpg");
   flex-direction: column;
   align-self: flex-start;
   width: 700px;
   height: 600px;
-  margin:5px;
+  margin: 5px;
 }
 
-#restart-button{
-display: none;
-font-size: 16px;
-padding:8px;
-border-radius: 12px;
-text-align: center;
-line-height: 2;
+#restart-button {
+  display: none;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 12px;
+  text-align: center;
+  line-height: 2;
 }
 
-#start-button{
-    font-size: 16px;
-    padding:8px;
-    border-radius: 12px;
-    text-align: center;
-    line-height: 2;
-
-
+#start-button {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 12px;
+  text-align: center;
+  line-height: 2;
 }
-#game-over{
-    width:700px;
-    height: 600px;
-    background-color: blueviolet;
-    color:white;
-    display: none;
-    justify-content: center;
-    align-items: center;
+#game-over {
+  width: 700px;
+  height: 600px;
+  background-color: blueviolet;
+  color: white;
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
-.HighScore{
-    text-align: center;
-    padding-top: 15px;
-    color: yellow;
-    display: flex;
-    flex-direction: column;
-
-
-
-
+.HighScore {
+  text-align: center;
+  padding-top: 15px;
+  color: yellow;
+  display: flex;
+  flex-direction: column;
 }

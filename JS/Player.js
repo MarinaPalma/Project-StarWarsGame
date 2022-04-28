@@ -6,7 +6,7 @@ class Player {
     this.width = 50;
     this.height = 90;
 
-    // this.imgBB = new Image();
+    this.imgBB = new Image();
     const img = new Image();
     img.addEventListener("load", () => {
       this.imgBB = img;
