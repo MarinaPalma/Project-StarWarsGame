@@ -13,6 +13,7 @@ const soundBeg = new Audio(
 
 
 
+
 function startGame() {
 startBt.style.display="none";
 restartBt.style.display="flex";

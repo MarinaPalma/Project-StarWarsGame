@@ -28,9 +28,9 @@ class Friends {
 
   drawFriend() {
     if (this.droid === "Grogu") {
-      this.img.src = "docs/assets/imgs/Grogu.png";
+      this.img.src = "./docs/assets/imgs/Grogu.png";
     } else if (this.droid === "Bo") {
-      this.img.src = "docs/assets/imgs/d0.png";
+      this.img.src = "./docs/assets/imgs/d0.png";
     }
     this.space.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }

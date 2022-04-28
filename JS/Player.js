@@ -8,7 +8,7 @@ class Player {
     this.imgBB = new Image();
     this.lifes = 3;
     this.score = 0;
-    this.img = "docs/assets/imgs/bb8 front.png";
+    this.img = "./docs/assets/imgs/bb8 front.png";
 
     this.friendsCatched=[];
     
@@ -61,10 +61,10 @@ class Player {
   }
 
   changeImg() {
-    if(this.img === "/docs/assets/imgs/bb8 front.png"){
-      this.img = "/docs/assets/imgs/bb8 back.png";  
+    if(this.img === "./docs/assets/imgs/bb8 front.png"){
+      this.img = "./docs/assets/imgs/bb8 back.png";  
     }else{
-      this.img = "/docs/assets/imgs/bb8 front.png"
+      this.img = "./docs/assets/imgs/bb8 front.png"
     }
   }
 

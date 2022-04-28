@@ -14,14 +14,15 @@ class Space {
     this.frames = 0;
     this.friends = [];
     this.active = false;
-    this.soundTie = new Audio("docs/assets/sounds/tiekillsx.wav");
+    this.soundTie = new Audio("./docs/assets/sounds/tiekillsx.wav");
     this.seconds = 0;
     this.timer = null;
+    this.highScore = localStorage.getItem("highScore");
     this.winBg = new Image();
   }
 
   drawBackground() {
-    this.backGround.src = "docs/assets/imgs/backGround2.jpg";
+    this.backGround.src = "./docs/assets/imgs/backGround2.jpg";
     this.ctx.drawImage(
       this.backGround,
       this.x,
@@ -177,8 +178,9 @@ class Space {
         return player.crashed(friend);
       }
     });
-    if (player.score === 15) {
+    if (player.score === 1) {
       this.win();
+      this.highScoreStorage();
     }
   }
 
@@ -206,6 +208,14 @@ class Space {
       }, 1000);
     } else {
       clearInterval(this.timer);
+    }
+  }
+
+  highScoreStorage() {
+    //localStorage.setItem("highScore", '50');
+    //console.log(this.highScore);
+    if (this.seconds < this.highScore) {
+      localStorage.setItem("highScore", this.seconds);
     }
   }
 }
