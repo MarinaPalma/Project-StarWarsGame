@@ -1,59 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi" rel="stylesheet"
+        type="text/css" />
     <link rel="stylesheet" href="styles/style.css" />
     <title>A StarWars Game</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="all">
-      <div id="startScr"></div>
+        <div id="startScr"></div>
 
-      <div class="main" id="mainSc">
-        <section class="description">
-          <div class="text">
-            <p>
-              A long time ago in a galaxy far, far away...<br />
-              Grogu´s planet was attacked and fell into the Dark Side. <br />
-              You must help the Resistance and rescue all the 15 Grogu. Try to
-              save them as fast as<br />
-              you can, but be aware of the enemies. You have 3 tries (and one
-              extra if you manage to catch B-0). <br />
-              We are counting on you!
-            </p>
-          </div>
-        </section>
-      </div>
+        <div class="main" id="mainSc">
+            <section class="description">
+                <div class="text">
+                    <p>
+                        A long time ago in a galaxy far, far away...<br />
+                        Grogu´s planet was attacked and fell into the Dark Side. <br />
+                        You must help the Resistance and rescue all the 15 Grogu. Try to
+                        save them as fast as<br />
+                        you can, but be aware of the enemies. You have 3 tries (and one
+                        extra if you manage to catch B-0). <br />
+                        We are counting on you!
+                    </p>
+                </div>
+            </section>
+        </div>
 
-      <div id="game-board">
-        <canvas id="canvas" width="700" height="600"></canvas>
-      </div>
+        <div id="game-board">
+            <canvas id="canvas" width="700" height="600"></canvas>
+        </div>
 
-      <div id="game-over"></div>
+        <div id="game-over"></div>
 
 
-      
 
-      <div class="logo-container">
-          <div id="timer"></div>
-        <img
-          src="docs/assets/imgs/Star_Wars_Logo.svg.png"
-          alt="star wars logo"
-          id="logo"
-        />
-        <button id="start-button">Start Game</button>
-        <button id="restart-button">Restart Game</button>
-        <div class="HighScore"></div>
-        <div><img src="./docs/assets/imgs/arrows.png" alt="comands arrow right and arrow left" id ="arrows"/></div>
-      </div>
+
+        <div class="logo-container">
+            <div id="timer"></div>
+            <img src="docs/assets/imgs/Star_Wars_Logo.svg.png" alt="star wars logo" id="logo" />
+            <button id="start-button">Start Game</button>
+            <button id="restart-button">Restart Game</button>
+            <div class="HighScore"></div>
+            <img src="./docs/assets/imgs/arrows.png" alt="comands arrow right and arrow left" id="arrows" />
+        </div>
     </div>
     <script src="JS/Controls.js"></script>
     <script src="JS/Enemy.js"></script>
@@ -61,5 +55,6 @@
     <script src="JS/Player.js"></script>
     <script src="JS/Space.js"></script>
     <script src="JS/window.js"></script>
-  </body>
+</body>
+
 </html>
