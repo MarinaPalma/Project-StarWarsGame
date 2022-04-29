@@ -16,8 +16,8 @@ class Space {
     this.active = false;
     this.seconds = 0;
     this.timer = null;
-    this.highScore = localStorage.getItem("highscore")
-    //this.highScore = 200;
+    // this.highScore = localStorage.getItem("highscore")
+    this.highScore = 200;
     this.storage = null;
     this.winBg = new Image();
   }
@@ -38,7 +38,7 @@ class Space {
     this.player = new Player(this);
     this.controls = new Controls(this);
     this.controls.keyboardEvents();
-    this.highScoreStorage();
+    this.checkHighS();
     this.intervalId = setInterval(() => {
       this.update();
     }, 1000 / 60);
@@ -51,6 +51,7 @@ class Space {
     gameOverScreen.innerHTML = `you failed your mission. ${this.player.score} / 15 Grogu saved`;
     this.active = false;
     this.countTime();
+    // this.highScoreStorage();
     clearInterval(this.intervalId);
   }
 
@@ -181,7 +182,7 @@ class Space {
     });
     if (player.score === 15) {
       this.win();
-       }
+    }
   }
 
   displayScore() {
@@ -212,24 +213,22 @@ class Space {
     }
   }
 
- highScoreStorage() {
-
-    if (this.highScore <  this.seconds) {
+  highScoreStorage() {
+    if (this.highScore > this.seconds) {
       this.highScore = this.seconds;
-
       localStorage.setItem("highscore", this.highScore);
     }
-    if(this.highScore){
-      document.getElementsByClassName(
-        "HighScore"
-      )[0].innerHTML = `Highscore: ${this.highScore} sec`;
-    }else{
-      document.getElementsByClassName(
-        "HighScore"
-      )[0].innerHTML = `Highscore: 200 sec`;
-    }
-    
+    document.getElementsByClassName(
+      "HighScore"
+    )[0].innerHTML = `Highscore: ${this.highScore} sec`;
   }
-
-
+  checkHighS() {
+    this.storage = localStorage.getItem("highscore");
+    if (this.storage) {
+      this.highScore = this.storage;
+    }
+    document.getElementsByClassName(
+      "HighScore"
+    )[0].innerHTML = `Highscore: ${this.highScore} sec`;
+  }
 }
